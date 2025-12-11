@@ -1,0 +1,256 @@
+* {
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #ffe5ec, #e2f0ff);
+}
+
+.app {
+  background: #ffffffee;
+  padding: 24px 28px;
+  border-radius: 22px;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+  width: 360px;
+  text-align: center;
+}
+
+h1 {
+  margin: 0 0 4px;
+  font-size: 26px;
+}
+
+.subtitle {
+  margin: 0 0 16px;
+  font-size: 13px;
+  color: #777;
+}
+
+/* Pasta kartları alanı */
+.pasta-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+/* Kartlar (büyütülmüş & cozy) */
+.pasta-card {
+  border: none;
+  border-radius: 20px;
+  padding: 14px 10px;   /* %15 kadar büyüttük */
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  background: #ffe5ec;  /* daha yumuşak pastel */
+  transition:
+    transform 0.08s ease,
+    box-shadow 0.08s ease,
+    background 0.15s ease,
+    outline 0.1s ease;
+}
+
+/* Her kart için farklı yumuşak pastel ton */
+.pasta-card:nth-child(2) {
+  background: #e7f5d9;
+}
+
+.pasta-card:nth-child(3) {
+  background: #ddeaff;
+}
+
+.pasta-card:nth-child(4) {
+  background: #fff3c9;
+}
+
+.pasta-emoji {
+  font-size: 26px;
+}
+
+.pasta-name {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.pasta-time {
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+/* Cozy açıklama kutucuğu (B seçeneği) */
+.pasta-desc {
+  margin-top: 6px;
+  padding: 6px 8px;
+  font-size: 12px;
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 10px;
+  color: #555;
+  line-height: 1.2;
+  display: inline-block;
+  max-width: 90%;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.06);
+  transition:
+    background 0.2s ease,
+    transform 0.1s ease,
+    box-shadow 0.1s ease;
+}
+
+/* Mini kalp ikonu */
+.pasta-desc::before {
+  content: "♡";
+  font-size: 11px;
+  margin-right: 4px;
+  opacity: 0.9;
+}
+
+/* Hover sırasında hem kart hem açıklama hafif parlıyor */
+.pasta-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+.pasta-card:hover .pasta-desc {
+  background: rgba(255, 255, 255, 0.85);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+}
+
+/* Seçili kart glow efekti (C seçeneği) */
+/* --- Seçili kart glow efekti: kart rengine göre ayarlanmış --- */
+
+/* 1. Spaghetti (pembe pastel) */
+.pasta-card[data-pasta="spaghetti"].selected {
+  outline: 2px solid #ffafcc;
+  box-shadow:
+    0 0 0 2px rgba(255, 175, 204, 0.5),
+    0 8px 18px rgba(255, 175, 204, 0.7),
+    0 0 18px rgba(255, 175, 204, 0.8);
+  transform: translateY(-2px);
+}
+
+/* 2. Penne (yumuşak yeşil pastel) */
+.pasta-card[data-pasta="penne"].selected {
+  outline: 2px solid #b5e48c;
+  box-shadow:
+    0 0 0 2px rgba(181, 228, 140, 0.5),
+    0 8px 18px rgba(181, 228, 140, 0.7),
+    0 0 18px rgba(181, 228, 140, 0.8);
+  transform: translateY(-2px);
+}
+
+/* 3. Fusilli (bebek mavisi pastel) */
+.pasta-card[data-pasta="fusilli"].selected {
+  outline: 2px solid #a3c4f3;
+  box-shadow:
+    0 0 0 2px rgba(163, 196, 243, 0.5),
+    0 8px 18px rgba(163, 196, 243, 0.7),
+    0 0 18px rgba(163, 196, 243, 0.8);
+  transform: translateY(-2px);
+}
+
+/* 4. Macaroni (yumuşak sarı pastel) */
+.pasta-card[data-pasta="macaroni"].selected {
+  outline: 2px solid #ffe8a3;
+  box-shadow:
+    0 0 0 2px rgba(255, 232, 163, 0.5),
+    0 8px 18px rgba(255, 232, 163, 0.7),
+    0 0 18px rgba(255, 232, 163, 0.8);
+  transform: translateY(-2px);
+}
+
+
+/* Seçilen ve süre alanı */
+.current-info {
+  margin-bottom: 12px;
+}
+
+#selectedPastaText {
+  margin: 4px 0;
+  font-size: 14px;
+  color: #555;
+}
+
+#timeDisplay {
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* Butonlar */
+.buttons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  border-radius: 999px;
+  padding: 8px 0;
+  flex: 1;
+  font-size: 13px;
+  font-weight: 600;
+  transition: transform 0.08s ease, box-shadow 0.08s ease, opacity 0.1s;
+}
+
+#startBtn {
+  background: #bde0fe;
+}
+
+#pauseBtn {
+  background: #ffc8dd;
+}
+
+#resetBtn {
+  background: #caffbf;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: none;
+  opacity: 0.8;
+}
+
+/* Status yazısı */
+.status {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: #666;
+}
+
+/* Pasta hazır bölümü */
+.ready-section {
+  margin-top: 12px;
+  padding-top: 8px;
+  border-top: 1px dashed #f4a9c6;
+  display: none; /* başta gizli */
+}
+
+.ready-text {
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #e76f51;
+}
+
+#doneBtn {
+  flex: 0 0 auto;
+  padding: 7px 16px;
+  background: #ffafcc;
+  border-radius: 999px;
+  font-size: 13px;
+}

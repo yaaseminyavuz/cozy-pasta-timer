@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Pasta Timer 🍝⏱️</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="app">
+    <h1>Pasta Timer</h1>
+    <p class="subtitle">Choose your pasta, start the timer, and relax ✨</p>
+
+    <!-- Pasta türü seçimi -->
+    <div class="pasta-grid">
+      <button class="pasta-card" data-pasta="spaghetti">
+        <span class="pasta-emoji">🍝</span>
+        <span class="pasta-name">Spaghetti</span>
+        <span class="pasta-time">11 min</span>
+        <span class="pasta-desc">Thin & elegant. Perfect al dente.</span>
+      </button>
+
+      <button class="pasta-card" data-pasta="penne">
+        <span class="pasta-emoji">🍲</span>
+        <span class="pasta-name">Penne</span>
+        <span class="pasta-time">13 min</span>
+        <span class="pasta-desc">Little tubes that hold every flavor.</span>
+      </button>
+
+      <button class="pasta-card" data-pasta="fusilli">
+        <span class="pasta-emoji">🥣</span>
+        <span class="pasta-name">Fusilli</span>
+        <span class="pasta-time">12 min</span>
+        <span class="pasta-desc">Cute spirals that hug the sauce.</span>
+      </button>
+
+      <button class="pasta-card" data-pasta="macaroni">
+        <span class="pasta-emoji">🧀</span>
+        <span class="pasta-name">Macaroni</span>
+        <span class="pasta-time">9 min</span>
+        <span class="pasta-desc">Soft & comforting. A warm hug.</span>
+      </button>
+    </div>
+
+    <!-- Seçilen makarna ve süre -->
+    <div class="current-info">
+      <p id="selectedPastaText">No pasta selected yet</p>
+      <div id="timeDisplay">00:00</div>
+    </div>
+
+    <!-- Kontroller -->
+    <div class="buttons">
+      <button id="startBtn">Start</button>
+      <button id="pauseBtn">Pause</button>
+      <button id="resetBtn">Reset</button>
+    </div>
+
+    <p class="status" id="statusText">Choose a pasta to begin 💗</p>
+
+    <!-- Pasta hazır olduğunda çıkan bölüm -->
+    <div class="ready-section" id="readySection">
+      <p class="ready-text">Pasta is ready! 🍽️</p>
+      <button id="doneBtn">Done</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
